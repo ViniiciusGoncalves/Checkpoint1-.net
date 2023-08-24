@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkpoint", "Checkpoint1\Checkpoint.csproj", "{CC020561-2719-4484-9A9D-739DA970AD3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkpoint.Services", "Checkpoint.Services\Checkpoint.Services.csproj", "{7D1556ED-942C-4299-A718-658757721E83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkpoint.Services", "Checkpoint.Services\Checkpoint.Services.csproj", "{7D1556ED-942C-4299-A718-658757721E83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkpoint.Data", "Checkpoint.Data\Checkpoint.Data.csproj", "{0BE955F0-3362-4BBD-93B0-DE2462E0890A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkpoint.Data", "Checkpoint.Data\Checkpoint.Data.csproj", "{0BE955F0-3362-4BBD-93B0-DE2462E0890A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkpoint.Shared", "Checkpoint.Shared\Checkpoint.Shared.csproj", "{B12AA644-A5A0-4B85-9E75-5236197BBE02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkpoint.Shared", "Checkpoint.Shared\Checkpoint.Shared.csproj", "{B12AA644-A5A0-4B85-9E75-5236197BBE02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console1", "Console1\Console1.csproj", "{51D68C2B-0714-4B18-A8B8-BBEBD1C2F433}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CC020561-2719-4484-9A9D-739DA970AD3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC020561-2719-4484-9A9D-739DA970AD3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC020561-2719-4484-9A9D-739DA970AD3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC020561-2719-4484-9A9D-739DA970AD3F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7D1556ED-942C-4299-A718-658757721E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7D1556ED-942C-4299-A718-658757721E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D1556ED-942C-4299-A718-658757721E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{B12AA644-A5A0-4B85-9E75-5236197BBE02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B12AA644-A5A0-4B85-9E75-5236197BBE02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B12AA644-A5A0-4B85-9E75-5236197BBE02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D68C2B-0714-4B18-A8B8-BBEBD1C2F433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D68C2B-0714-4B18-A8B8-BBEBD1C2F433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D68C2B-0714-4B18-A8B8-BBEBD1C2F433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D68C2B-0714-4B18-A8B8-BBEBD1C2F433}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ namespace Checkpoint
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("teste")
         }
     }
 }

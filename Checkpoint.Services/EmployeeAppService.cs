@@ -19,9 +19,9 @@ namespace Checkpoint.Services
                 existingEmployee.Gender = employee.Gender;
                 existingEmployee.ValueHourly = employee.ValueHourly;
                 existingEmployee.IsPositionTrust = employee.IsPositionTrust;
-                existingEmployee.IsPjOrCnpj = employee.IsPjOrCnpj;
+                existingEmployee.IsPjOrClt = employee.IsPjOrClt;
                 existingEmployee.ContractedHours = employee.ContractedHours;
-                existingEmployee.CnpjOrCnpj = employee.CnpjOrCnpj;
+                existingEmployee.CnpjOrCpf = employee.CnpjOrCpf;
             }
             else
             {
@@ -42,9 +42,33 @@ namespace Checkpoint.Services
             return false;
         }
 
-        public decimal ComputeTotalCost()
+        public decimal ComputeTotalCost(string idRegistrationCode)
         {
-            throw new NotImplementedException();
+            var employee = _employeeList.FirstOrDefault(e => e.IdRegistrationCode == idRegistrationCode);
+
+            if (employee != null)
+            {
+                if (employee.IsPjOrClt == false)
+                {
+                    // Cálculo do custo para funcionário PJ (valor hora vezes quantidade de horas contratada)
+                    decimal monthlyCostPj = (decimal)employee.ValueHourly * employee.ContractedHours;
+                    return monthlyCostPj;
+                }
+                else
+                {
+                    // Cálculo do custo para funcionário CLT
+                    decimal monthlyCostClt = employee.Salary +
+                        (employee.Salary * 0.1111m) + // Fração de férias
+                        (employee.Salary * 0.0833m) + // Fração de 13º salário
+                        (employee.Salary * 0.08m) +   // FGTS
+                        (employee.Salary * 0.04m) +   // Provisão de multa para rescisão
+                        (employee.Salary * 0.0793m);  // Previdenciário
+                    return monthlyCostClt;
+                }
+            }
+
+            // Retornar 0 ou algum valor padrão se o funcionário não for encontrado
+            return 0;
         }
 
         public List<GetEmployeeForViewDto> GetAllEmployees()
