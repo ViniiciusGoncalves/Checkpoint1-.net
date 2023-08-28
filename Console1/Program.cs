@@ -16,7 +16,9 @@ namespace Console1
                 Console.WriteLine("Escolha uma opção:");
                 Console.WriteLine("1 - Criar ou editar funcionário");
                 Console.WriteLine("2 - Listar todos os funcionários");
-                Console.WriteLine("3 - Sair");
+                Console.WriteLine("3 - Aumentar o salário de um funcionario");
+                Console.WriteLine("4 - Custo mensal de todos os funcionarios");
+                Console.WriteLine("5 - Sair");
                 Console.Write("Opção: ");
                 string choice = Console.ReadLine();
 
@@ -60,7 +62,7 @@ namespace Console1
                             Console.Write("Digite o cnpj dele: ");
                             string cpf = Console.ReadLine();
                             Console.Write("Digite o valor de horas do funcionário: ");
-                            float valueHourly = float.Parse(Console.ReadLine());
+                            decimal valueHourly = decimal.Parse(Console.ReadLine());
 
                             newEmployee.ContractedHours = contractedHours;
                             newEmployee.CnpjOrCpf = cpf;
@@ -78,12 +80,30 @@ namespace Console1
                         {
                             Console.WriteLine($"Nome: {employee.Name}, Código de Registro: {employee.IdRegistrationCode}, Gênero: {employee.Gender}, Horas trabalhadas: {employee.ValueHourly}");
 
-                            decimal monthlyCost = employeeAppService.ComputeTotalCost(employee.IdRegistrationCode);
+                            decimal monthlyCost = employeeAppService.GetAllCostMonthEmployee(employee.IdRegistrationCode);
                             Console.WriteLine($"Custo Mensal: R$ {monthlyCost}");
                         }
                         break;
 
                     case "3":
+                        Console.Write("Digite o número de registro do funcionário: ");
+                        string regCode = Console.ReadLine();
+
+                        Console.Write("Digite o aumento: ");
+                        decimal increaseAmount;
+                        while (!decimal.TryParse(Console.ReadLine(), out increaseAmount) || increaseAmount < 0)
+                        {
+                            Console.WriteLine("Aumento inválido. Digite um valor que não seja negativo.");
+                            Console.Write("Digite o aumento: ");
+                        }
+
+                        Console.Write("O aumento é em porcentagem (true) ou em valor fixo (false)? ");
+                        bool isPercentage = bool.Parse(Console.ReadLine());
+
+                        employeeAppService.IncreaseSalary(regCode, increaseAmount, isPercentage);
+                        break;
+
+                    case "4":
                         Console.WriteLine("Encerrando o programa.");
                         return;
 

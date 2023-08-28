@@ -7,10 +7,11 @@ namespace Checkpoint.Data
         public string Name { get; set; }
         public string IdRegistrationCode { get; set; }
         public string Gender { get; set; }
-        public float ValueHourly { get; set; }
+        public decimal ValueHourly { get; set; }
+        public decimal Salary { get; set; }
         public bool IsPositionTrust { get; set; }
-        public bool IsPjOrCnpj { get; set; }
-        public DateTime ContractedHours { get; set; }
-        public string CnpjOrCnpj { get; set; }
+        public bool IsPjOrClt { get; set; }
+        public int ContractedHours { get; set; }
+        public string CnpjOrCpf { get; set; }
     }
 }

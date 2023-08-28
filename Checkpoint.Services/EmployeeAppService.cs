@@ -42,8 +42,26 @@ namespace Checkpoint.Services
             return false;
         }
 
-        public decimal ComputeTotalCost(string idRegistrationCode)
+        public decimal ComputeTotalCost()
         {
+            decimal totalCost = 0;
+
+            foreach (var employee in _employeeList)
+            {
+                decimal monthlyCost = GetAllCostMonthEmployee(employee.IdRegistrationCode);
+                totalCost += monthlyCost;
+            }
+
+            return totalCost;
+        }
+
+        public List<GetEmployeeForViewDto> GetAllEmployees()
+        {
+            return _employeeList;
+        }
+
+        public decimal GetAllCostMonthEmployee(string idRegistrationCode)
+        {       
             var employee = _employeeList.FirstOrDefault(e => e.IdRegistrationCode == idRegistrationCode);
 
             if (employee != null)
@@ -66,25 +84,52 @@ namespace Checkpoint.Services
                     return monthlyCostClt;
                 }
             }
-
-            // Retornar 0 ou algum valor padrão se o funcionário não for encontrado
             return 0;
         }
 
-        public List<GetEmployeeForViewDto> GetAllEmployees()
+        public void IncreaseSalary(string idRegistrationCode, decimal increaseAmount, bool isPercentage)
         {
-            return _employeeList;
+            var employee = _employeeList.FirstOrDefault(e => e.IdRegistrationCode == idRegistrationCode);
+
+            if (employee != null)
+            {
+                if (employee.IsPjOrClt)
+                {
+                    if (isPercentage)
+                    {
+                        // Aumento de salário para funcionário CLT em porcentagem
+                        decimal increasePercentage = increaseAmount;
+                        decimal increase = employee.Salary * (increasePercentage / 100);
+                        employee.Salary += increase;
+                        Console.WriteLine($"Salário do funcionário {employee.Name} aumentado em {increasePercentage}% para R$ {employee.Salary}");
+                    }
+                    else
+                    {
+                        // Aumento de salário para funcionário CLT em valor fixo (não aplicável)
+                        Console.WriteLine("Não é possível aumentar o salário em valor fixo para funcionário CLT.");
+                    }
+                }
+                else
+                {
+                    if (isPercentage)
+                    {
+                        // Aumento de salário para funcionário PJ em porcentagem (não aplicável)
+                        Console.WriteLine("Não é possível aumentar o salário em porcentagem para funcionário PJ.");
+                    }
+                    else
+                    {
+                        // Aumento de salário para funcionário PJ em valor fixo
+                        employee.ValueHourly += increaseAmount;
+                        Console.WriteLine($"Salário do funcionário {employee.Name} aumentado em R$ {increaseAmount} para R$ {employee.ValueHourly}");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Funcionário não encontrado.");
+            }
         }
 
-        public decimal GetAllCostMonthEmployee(string idRegistrationCode)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void IncreaseSalary(string idRegistrationCode, decimal percentage)
-        {
-            throw new NotImplementedException();
-        }
 
         public GetEmployeeForViewDto GetEmployeeById(string idRegistrationCode)
         {

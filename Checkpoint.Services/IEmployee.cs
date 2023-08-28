@@ -11,7 +11,7 @@ namespace Checkpoint.Services
         decimal ComputeTotalCost();
         List<GetEmployeeForViewDto> GetAllEmployees();
         decimal GetAllCostMonthEmployee(string idRegistrationCode);
-        void IncreaseSalary(string idRegistrationCode, decimal percentage);
+        void IncreaseSalary(string idRegistrationCode, decimal increaseAmount, bool isPercentage);
         GetEmployeeForViewDto GetEmployeeById(string idRegistrationCode);
     }
 }
